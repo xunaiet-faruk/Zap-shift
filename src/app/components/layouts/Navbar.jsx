@@ -1,5 +1,11 @@
 "use client";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { motion } from "framer-motion";
+
 const Navbar = () => {
+    const pathname = usePathname();
+
     const links = [
         { name: 'Home', href: '/' },
         { name: 'Services', href: '/services' },
@@ -8,40 +14,94 @@ const Navbar = () => {
         { name: 'Pricing', href: '/pricing' },
         { name: 'Be a Rider', href: '/rider' },
     ];
+
+    const isActive = (href) => {
+        if (href === '/') {
+            return pathname === href;
+        }
+        return pathname === href || pathname.startsWith(href + '/');
+    };
+
     return (
         <div>
-            <div className="navbar  ">
+            <div className="navbar bg-white shadow-md">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+                            </svg>
                         </div>
                         <ul
                             tabIndex="-1"
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow-lg"
+                        >
                             {links.map((link) => (
-                                <li key={link.name}> 
-                                  <a href={link.href}>{link.name}</a>
+                                <li key={link.name}>
+                                    <Link
+                                        href={link.href}
+                                        className={isActive(link.href) ? "text-[#caeb66] font-semibold" : "text-gray-700"}
+                                    >
+                                        {link.name}
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
                     </div>
                     <div className="flex items-end">
                         <img className="mb-2 w-7" src="/assets/logo.png" alt="Logo" />
-                        <h1 className="text-2xl font-semibold">Profast</h1>
+                        <h1 className="text-2xl font-semibold text-[#03373d]">Profast</h1>
                     </div>
                 </div>
+
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                    <ul className="menu menu-horizontal px-1 gap-2">
                         {links.map((link) => (
-                            <li key={link.name}>
-                             <a href={link.href}>{link.name}</a> </li>
+                            <li key={link.name} className="relative">
+                                <Link
+                                    href={link.href}
+                                    className={`relative px-3 py-2 transition-all duration-300 ${isActive(link.href)
+                                            ? "text-[#caeb66] font-semibold"
+                                            : "text-[#03373d] hover:text-[#caeb66]"
+                                        }`}
+                                >
+                                    {link.name}
+                                    {isActive(link.href) && (
+                                        <motion.div
+                                            layoutId="activeUnderline"
+                                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#caeb66] rounded-full"
+                                            initial={{ opacity: 0, scaleX: 0 }}
+                                            animate={{ opacity: 1, scaleX: 1 }}
+                                            transition={{
+                                                type: "spring",
+                                                stiffness: 300,
+                                                damping: 30
+                                            }}
+                                        />
+                                    )}
+                                </Link>
+                            </li>
                         ))}
                     </ul>
                 </div>
+
                 <div className="navbar-end gap-4">
-                    <a className="btn border-b-2 border-[#caeb66]">Sign In</a>
-                    <a className="btn bg-[#caeb66] text-black">Be a Rider</a>
+                    <motion.a
+                        href="/register"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="btn border-2 border-[#caeb66] bg-transparent text-[#03373d] hover:bg-[#caeb66] hover:text-[#03373d] transition-all duration-300 rounded-lg px-6 font-semibold"
+                    >
+                        Sign Up
+                    </motion.a>
+                    <motion.a
+                        href="/rider"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="btn bg-[#caeb66] text-[#03373d] hover:bg-[#d4ff6e] transition-all duration-300 rounded-lg px-6 font-semibold shadow-md"
+                    >
+                        Be a Rider
+                    </motion.a>
                 </div>
             </div>
         </div>
