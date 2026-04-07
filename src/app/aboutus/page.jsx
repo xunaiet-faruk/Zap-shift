@@ -127,7 +127,7 @@ const Page = () => {
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
             {/* Hero Section */}
-            <div className="relative bg-gradient-to-r from-[#03373d] to-[#1a5c64] text-white overflow-hidden">
+            <div className="relative bg-gradient-to-r from-[#03373d] to-[#1a5c64] text-white rounded-b-4xl overflow-hidden">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-0 left-0 w-full h-full" style={{
@@ -136,15 +136,13 @@ const Page = () => {
                     }}></div>
                 </div>
 
-                <div className="relative max-w-7xl mx-auto px-6 py-32 text-center">
+                <div className="relative max-w-7xl mx-auto px-6 py-52 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <div className="inline-block px-4 py-2 bg-white/10 rounded-full mb-6 backdrop-blur-sm">
-                            <span className="text-sm font-semibold">✨ Welcome to Zapwork</span>
-                        </div>
+                        
                         <h1 className="text-5xl md:text-7xl font-bold mb-6">
                             Redefining Delivery
                             <span className="text-[#caeb66]"> Across Bangladesh</span>
@@ -152,13 +150,7 @@ const Page = () => {
                         <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto">
                             We're on a mission to connect every corner of Bangladesh with fast, reliable, and affordable delivery services.
                         </p>
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="bg-[#caeb66] text-[#03373d] px-8 py-3 rounded-full font-bold shadow-lg hover:shadow-xl transition"
-                        >
-                            Join Our Journey
-                        </motion.button>
+                       
                     </motion.div>
                 </div>
 
@@ -199,7 +191,7 @@ const Page = () => {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="text-center mb-12"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    <h2 className="text-4xl md:text-5xl font-bold text-[#03373d] mb-4">
                         Who We Are
                     </h2>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -265,7 +257,7 @@ const Page = () => {
             </div>
 
             {/* Features Section */}
-            <div className="bg-gray-50 py-20">
+            <div className="py-20">
                 <div className="max-w-7xl mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -274,7 +266,7 @@ const Page = () => {
                         viewport={{ once: true }}
                         className="text-center mb-12"
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                        <h2 className="text-4xl md:text-5xl font-bold text-[#03373d] mb-4">
                             Why Choose Us?
                         </h2>
                         <p className="text-xl text-gray-600">
