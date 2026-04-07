@@ -7,7 +7,7 @@ import "leaflet/dist/leaflet.css";
 import warehousesData from "@/app/data/warehouses.json";
 import { motion } from "framer-motion";
 
-// Fix for default marker icons in react-leaflet
+
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
     iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
@@ -33,7 +33,7 @@ const getMarkerIcon = (status) => {
 };
 
 const Page = () => {
-    const [mapCenter, setMapCenter] = useState([23.8103, 90.4125]); // Default: Dhaka
+    const [mapCenter, setMapCenter] = useState([23.8103, 90.4125]); 
     const [zoom, setZoom] = useState(7);
 
     // Load warehouses data
@@ -107,6 +107,8 @@ const Page = () => {
                         <p className="text-gray-600 text-lg">
                             Click on any marker to view service center details
                         </p>
+
+                        
                     </motion.div>
 
                     {/* Map Container */}
